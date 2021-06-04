@@ -17,6 +17,9 @@ for (let i=0;i<process.argv.length;i++){
 	console.log('[*~*] : \''+fil+'\' is\'nt a directory')
 	process.exit(1)
 }var plant = fs.readFileSync(fil).toString().split('');
+var Pumpkins = {}
+var Carver = [0]
+var Candle = 0
 plant.forEach(lambda => {
 	if(lambda==='"'||lambda==='\''&&!$){
 		$=true
@@ -29,12 +32,34 @@ plant.forEach(lambda => {
 		plant[int] = ' '+plant[int]+' '
 	}if (lambda==='\r'||lambda==='\n') {
 		plant[int] = ' '
+	}if (lambda==='+'&&!$) {
+		plant[int] = ' + '
+	}if (lambda==='-'&&!$) {
+		plant[int] = ' - '
+	}if (lambda==='/'&&!$) {
+		plant[int] = ' / '
+	}if (lambda==='%'&&!$) {
+		plant[int] = ' % '
+	}if (lambda==='*'&&!$) {
+		plant[int] = ' * '
+	}if (lambda==='^'&&!$) {
+		plant[int] = ' ^ '
 	}if (lambda==='$'&&!$) {
 		plant[int] = ' $ '
+	}if (lambda==='@'&&!$) {
+		plant[int] = ' @ '
+	}if (lambda=='@'&&plant[int+1]=='c'&&plant[int+2]=='a'&&plant[int+3]=='l'&&plant[int+4]=='l'&&!$) {
+		plant[int] = ' @call '
+		plant[int+1] = ''
+		plant[int+2] = ''
+		plant[int+3] = ''
+		plant[int+4] = ''
+	}if (lambda=='@'&&plant[int+1]=='d'&&plant[int+2]=='e'&&plant[int+3]=='f'&&!$) {
+		plant[int] = ' @def '
+		plant[int+1] = ''
+		plant[int+2] = ''
+		plant[int+3] = ''
 	}
-	// lets not add if else
-	// without have auto space:
-	// on = and == 
 	if (lambda==='='&&!$) {
 		if (plant[int+1]=='=') {
 			plant[int] = ''
@@ -43,8 +68,8 @@ plant.forEach(lambda => {
 			plant[int] = ''
 			plant[int+1] = ' =! '
 		}else{plant[int] = ' = '}
-	}if (lambda===':'&&!$) {
-		plant[int] = ' : '
+	}if (lambda==='?'&&!$) {
+		plant[int] = ' ? '
 	}if ((lambda==='('||lambda===')')&&!$) {
 		if(lambda==='('){onion[0]++}
 		else {onion[1]++}
@@ -89,8 +114,6 @@ for (let tomato = 0; tomato < plant.length; tomato++) {
 			carrots++
 		}if (plant[tomato+2] === '=!') {
 			try {
-				//console.log(foo) dev
-				//console.log(plant[tomato+3]==='$') dev
 				if (plant[tomato+3]==='$') {
 					potato = carrot.root[plant[tomato+1]]
 					carrot.core[potato] = carrot.core[carrot.root[plant[tomato+4]]]
@@ -105,7 +128,26 @@ for (let tomato = 0; tomato < plant.length; tomato++) {
 		}
 	}if (slot==='puts') {
 		if (plant[tomato+1]==='$') {
-			console.log(carrot.core[carrot.root[plant[tomato+2]]])
+			try {
+				console.log(carrot.core[carrot.root[plant[tomato+2]]])
+			}
 		}
 	}
-}// console.log(carrot);console.log(plant) // for development
+			if (plant[tomato]=='@') {
+				break
+			}if (plant[tomato]==undefined) {
+				tomato = value
+				break
+			}tomato++
+		}
+	}if (slot == '@call') {
+		if (Pumpkins[plant[tomato+1]] !== undefined){
+			Candle++
+			Carver[Candle] = tomato
+			tomato = Pumpkins[plant[tomato+1]]
+		}
+	}if (slot === '@') {
+		tomato = Carver[Candle]
+		Candle--
+	}
+}// console.log(carrot);console.log(Pumpkins);console.log(foo) // for development

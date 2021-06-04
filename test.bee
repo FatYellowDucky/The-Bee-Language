@@ -1,4 +1,9 @@
+@def AtCall
+puts ?$a/$c
+@
 $a = 10
 $b =! $a
+$c = 2.5
 puts $b
 puts $a
+@call AtCall

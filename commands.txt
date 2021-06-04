@@ -1,3 +1,19 @@
 $* = *
+name: var define
+syntax: $name = any
+
 $* =! * or $*
-puts * or $*
+name: value change
+syntax: $var =! $var/any
+
+puts *
+name: puts
+syntax: puts $var
+
+@def *
+name: at-call-define
+syntax: @def name code @
+
+@call *
+name: at-call
+syntax: @call name
