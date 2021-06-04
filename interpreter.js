@@ -130,9 +130,54 @@ for (let tomato = 0; tomato < plant.length; tomato++) {
 		if (plant[tomato+1]==='$') {
 			try {
 				console.log(carrot.core[carrot.root[plant[tomato+2]]])
+			} catch (Exception) {
+				console.log(`nil`)
+			}
+		}
+		if (plant[tomato+1]=='?') {
+			tomato++ // 0 -> 1
+			let uno
+			let dos
+			let oporatore
+			/*
+			oporatore = plant[tomato+3]
+			uno = plant[tomato+2]
+			dos = plant[tomato+4]
+			*/
+			if (plant[tomato+1]=='$') {
+				oporatore = plant[tomato+3]
+				tomato++;tomato++ // 1 -> 3
+				uno = carrot.core[carrot.root[plant[tomato]]]
+			}else{
+				tomato++; // 1 -> 2
+				oporatore = plant[tomato+1]
+				uno = plant[tomato]
+			}if (plant[tomato+2]=='$') {
+				dos = carrot.core[carrot.root[plant[tomato+3]]]
+			} else {
+				dos = plant[tomato+2]
+			}
+			if (oporatore == '*') {
+				console.log(parseFloat(uno)*parseFloat(dos))
+			}if (oporatore == '+') {
+				console.log(parseFloat(uno)+parseFloat(dos))
+			}else if (oporatore == '-') {
+				console.log(parseFloat(uno)-parseFloat(dos))
+			}else if (oporatore == '/') {
+				console.log(parseFloat(uno)/parseFloat(dos))
+			}else if (oporatore == '%') {
+				console.log(parseFloat(uno)%parseFloat(dos))
+			}else if (oporatore == '^') {
+				console.log(parseFloat(uno)^parseFloat(dos))
+			}else {
+				console.log('\uadef')
 			}
 		}
 	}
+	if (slot=='@def') {
+		Pumpkins[plant[tomato+1]] = tomato+1
+		let value = tomato+2
+		while (true) {
 			if (plant[tomato]=='@') {
 				break
 			}if (plant[tomato]==undefined) {
