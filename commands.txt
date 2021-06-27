@@ -17,3 +17,9 @@ syntax: @def name code @
 @call *
 name: at-call
 syntax: @call name
+
+@with * ? *
+name: at-with
+syntax: @with name ? thing -> $variable?
+note: going to add more stuff than just @with file
+note: going to be next update

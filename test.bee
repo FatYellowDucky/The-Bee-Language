@@ -7,3 +7,5 @@ $c = 2.5
 puts $b
 puts $a
 @call AtCall
+@with file ? read (./commands.txt) -> $content
+puts $content

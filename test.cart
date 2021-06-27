@@ -1,0 +1,11 @@
+@def AtCall
+    puts ?$a/$c
+@
+$a = 3.5
+$b =! $a
+$c = 2
+puts $b
+puts $a
+@call AtCall
+@with file ? read /?'./dummyfile.txt'/? -> $content
+puts $content
