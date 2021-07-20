@@ -1,11 +1,13 @@
-@def AtCall
-    puts ?$a/$c
+#/ TODO: vim script syntax highlighting #/
+#/ DONTKNOWHOWTO: vim script syntax highlighting #/
+@def divide
+    puts ?$a/$b
 @
-$a = 3.5
-$b =! $a
-$c = 2
-puts $b
-puts $a
-@call AtCall
+$a = 8 #/ sets $a to 8 #/
+$b = 2
+$c = 'Hello, World!'
+$message = 'yaks are black and brown, and they have long, narrow, and pointed ears.'
+puts $c
+@call divide
+@with file ? write /?'dummyfile.txt'/? $c
 @with file ? read /?'./dummyfile.txt'/? -> $content
-puts $content
