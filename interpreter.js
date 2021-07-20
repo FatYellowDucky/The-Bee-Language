@@ -1,7 +1,4 @@
-// development now with copilot :
-// • auto coments
-// • auto code
-// • auto faster
+// Vegetables [potato, carrot, pumpkin]
 const fs = require('fs');
 var fil=process.argv[2];
 var onion = []
